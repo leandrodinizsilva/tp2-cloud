@@ -1,0 +1,26 @@
+import pandas as pd
+from mlxtend.frequent_patterns import fpgrowth, association_rules
+from mlxtend.preprocessing import TransactionEncoder
+
+
+data1 = pd.read_csv('/spotify/2023_spotify_ds1.csv')
+data2 = pd.read_csv('/spotify/2023_spotify_ds1.csv')
+
+data = pd.concat([data1, data2])
+
+basket = data[['track_name', 'artist_name', 'album_name']]
+
+te = TransactionEncoder()
+te_ary = te.fit(basket).transform(basket)
+
+df = pd.DataFrame(te_ary, columns=te.columns_)
+
+##basket_encoded = basket.apply(lambda x: x.map(lambda _: 1)) 
+
+frequent = fpgrowth(df, min_support=0.1, use_colnames=True)
+
+print(frequent)
+
+rules = association_rules(frequent, metric="lift", min_threshold=1.0,  num_itemsets=2)
+
+print(rules)
