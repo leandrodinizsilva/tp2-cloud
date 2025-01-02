@@ -27,9 +27,9 @@ services:
       dockerfile: Dockerfile
     environment:
       HOST: 0.0.0.0
-      PORT: 31332
+      PORT: 31337
     ports:
-      - "31332:31332"
+      - "31337:31337"
 
 volumes:
   shared-data:
