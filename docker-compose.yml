@@ -20,6 +20,16 @@ services:
       dockerfile: Dockerfile
     volumes:
       - shared-data:/data
+  
+  ldsfront:
+    build:
+      context: ./front/
+      dockerfile: Dockerfile
+    environment:
+      HOST: 0.0.0.0
+      PORT: 31332
+    ports:
+      - "31332:31332"
 
 volumes:
   shared-data:
