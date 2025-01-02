@@ -43,7 +43,7 @@ function App() {
     console.log(process.env);
     try {
       const response = await axios.post(
-        `${API_URL}/api/recomend`,
+        `${API_URL}/api/recommend`,
         { musicList },
         {
           headers: {

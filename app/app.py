@@ -35,11 +35,11 @@ def hello():
                 port=int(os.getenv('FLASK_RUN_PORT', 31331)),
                 debug=True)
 
-@app.before_request
-def handle_options_request():
-    if request.method == "OPTIONS":
-        response = make_response()
-        response.headers["Access-Control-Allow-Origin"] = "*"
-        response.headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, PUT, DELETE, PATCH"
-        response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-        return response
+# @app.before_request
+# def handle_options_request():
+#     if request.method == "OPTIONS":
+#         response = make_response()
+#         response.headers["Access-Control-Allow-Origin"] = "*"
+#         response.headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, PUT, DELETE, PATCH"
+#         response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+#         return response
