@@ -3,10 +3,10 @@ import logging
 import pandas as pd
 import pickle
 from flask import Flask,jsonify, request
+from flask_cors import CORS
 app = Flask(__name__)
 
-from flask_cors import CORS
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 logging.basicConfig(level=logging.DEBUG)
 version = os.getenv('APP_VERSION', 0)
