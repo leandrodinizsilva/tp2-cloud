@@ -16,4 +16,4 @@ ENV HOST=0.0.0.0
 ENV PORT=31337
 
 RUN npm install -g serve
-CMD ["serve", "-s", "build", "-l", "31337"]
+CMD ["serve", "-s", "build", "-l", "31337", "--spa"]
