@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 
-console.log(process.env);
+
 const API_URL = process.env.API_URL || "http://localhost:31331";
 
 function App() {
@@ -39,6 +39,7 @@ function App() {
   };
 
   const handleDiscoverRecommendations = async () => {
+    console.log(process.env);
     try {
       const response = await fetch(`${API_URL}/api/recomend`, {
         method: "POST",
