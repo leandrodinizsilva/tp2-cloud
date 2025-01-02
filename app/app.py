@@ -2,7 +2,7 @@ import os
 import logging
 import pandas as pd
 import pickle
-from flask import Flask,jsonify, request
+from flask import Flask,jsonify, request, make_response
 from flask_cors import CORS
 app = Flask(__name__)
 
@@ -38,8 +38,8 @@ def hello():
 @app.before_request
 def handle_options_request():
     if request.method == "OPTIONS":
-        response = app.make_response()
-        response.headers["Access-Control-Allow-Origin"] = "http://localhost:31337"  # Update the origin as needed
+        response = make_response()
+        response.headers["Access-Control-Allow-Origin"] = "*"
         response.headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, PUT, DELETE, PATCH"
         response.headers["Access-Control-Allow-Headers"] = "Content-Type"
         return response
