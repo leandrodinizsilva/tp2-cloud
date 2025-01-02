@@ -18,6 +18,8 @@ services:
     build:
       context: ./app/
       dockerfile: Dockerfile
+    networks:
+      - app-network
     volumes:
       - shared-data:/data
   
@@ -25,11 +27,18 @@ services:
     build:
       context: ./front/
       dockerfile: Dockerfile
+    networks:
+      - app-network
     environment:
       HOST: 0.0.0.0
       PORT: 31337
+      API_URL: http://ldsapp:31331
     ports:
       - "31337:31337"
 
 volumes:
   shared-data:
+
+networks:
+  app-network:
+    driver: bridge
