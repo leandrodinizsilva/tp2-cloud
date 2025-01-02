@@ -2,7 +2,7 @@ import os
 import logging
 import pandas as pd
 import pickle
-from flask import Flask,jsonify
+from flask import Flask,jsonify, request
 app = Flask(__name__)
 
 logging.basicConfig(level=logging.DEBUG)
@@ -17,10 +17,11 @@ def readPickle():
 
 print("iniciei")
 
-@app.route('/api/recommend')
+@app.route('/api/recommend', methods=['POST'])
 def hello():
+    data = request.get_json()
     print( "Hello World!")
-    app.logger.debug(readPickle())    
+    app.logger.debug(data)    
 
     return jsonify({"songs": 12312,
                     "version": version,
