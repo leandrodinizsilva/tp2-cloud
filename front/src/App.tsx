@@ -3,7 +3,7 @@ import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
-const API_URL = process.env.API_URL || "http://ldsapp:31331";
+const API_URL = process.env.API_URL || "http://localhost:31331";
 
 function App() {
   const [musicName, setMusicName] = useState<string>("");

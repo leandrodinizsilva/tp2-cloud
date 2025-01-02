@@ -20,6 +20,8 @@ services:
       dockerfile: Dockerfile
     networks:
       - app-network
+    ports:
+      - "31331:31331"
     volumes:
       - shared-data:/data
   
