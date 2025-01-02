@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from 'axios';
 
 
 const API_URL = process.env.API_URL || "http://localhost:31331";
@@ -41,15 +42,17 @@ function App() {
   const handleDiscoverRecommendations = async () => {
     console.log(process.env);
     try {
-      const response = await fetch(`${API_URL}/api/recomend`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ musicList }),
-      });
-      
-      const data = await response.json();
+      const response = await axios.post(
+        `${API_URL}/api/recomend`,
+        { musicList },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  
+      const data = response.data;
       setModalBody(data.songs);
       setVersion(data.version);
       setModelDate(data.model_date);
