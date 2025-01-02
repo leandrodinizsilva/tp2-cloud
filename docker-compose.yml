@@ -3,6 +3,7 @@ services:
     build:
       context: ./rules/
       dockerfile: Dockerfile
+    image: leandro867/playlist-model:0.1
     environment:
       - FLASK_APP=app.py
       - FLASK_RUN_HOST=0.0.0.0
@@ -18,6 +19,7 @@ services:
     build:
       context: ./app/
       dockerfile: Dockerfile
+    image: leandro867/playlist-api:0.1
     networks:
       - app-network
     ports:
@@ -29,6 +31,7 @@ services:
     build:
       context: ./front/
       dockerfile: Dockerfile
+    image: leandro867/playlist-front:0.1
     networks:
       - app-network
     environment:
