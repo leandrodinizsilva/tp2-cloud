@@ -10,10 +10,12 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 31332
+EXPOSE 31337
 
 ENV HOST=0.0.0.0
-ENV PORT=31332
+ENV PORT=31337
 
-RUN npm install -g serve
-CMD ["serve", "-s", "build", "-l", "31332"]
+RUN VITE_PORT=31337 npm run dev
+
+# RUN npm install -g serve
+# CMD ["serve", "-s", "build", "-l", "31337"]
