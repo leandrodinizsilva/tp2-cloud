@@ -34,3 +34,12 @@ def hello():
         app.run(host=os.getenv('FLASK_RUN_HOST', '0.0.0.0'),
                 port=int(os.getenv('FLASK_RUN_PORT', 31331)),
                 debug=True)
+
+@app.before_request
+def handle_options_request():
+    if request.method == "OPTIONS":
+        response = app.make_response()
+        response.headers["Access-Control-Allow-Origin"] = "http://localhost:31337"  # Update the origin as needed
+        response.headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, PUT, DELETE, PATCH"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+        return response
