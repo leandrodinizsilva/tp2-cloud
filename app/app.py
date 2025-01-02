@@ -18,15 +18,44 @@ def readPickle():
         rules = pickle.load(file)
         return rules
 
-print("iniciei")
+def recommend(musicList):
+    model = readPickle()
+
+    applicable_rules = model[model["antecedents"].apply(lambda antecedents: antecedents.issubset(musicList))]
+    applicable_rules = applicable_rules.sort_values(by="confidence", ascending=False)
+   
+    recommendations = []
+
+    limit = 0 
+    for _, row in applicable_rules.iterrows():
+        rec_len = len(recommendations)
+        for song in row["consequents"]:
+            if song not in recommendations and song not in musicList:
+                recommendations.append(song)
+
+        rec_len_new = len(recommendations)
+        if (rec_len != rec_len_new):
+            limit = limit + 1
+        if limit >= 10:
+            break
+
+    if (len(recommendations) == 0):
+        sampled_rules = model.sample(n=5)
+        consequents_list = sampled_rules["consequents"].tolist()
+        flattened_consequents = [song for consequent in consequents_list for song in consequent]
+        flattened_consequents.insert(0, "Resultado Aleatório!")
+        recommendations = flattened_consequents            
+
+    return ', '.join(recommendations)
+
 
 @app.route('/api/recommend', methods=['POST'])
 def hello():
     data = request.get_json()
-    print( "Hello World!")
-    app.logger.debug(data)    
+   
+    rec = recommend(data["musicList"])     
 
-    return jsonify({"songs": 12312,
+    return jsonify({"songs": rec,
                     "version": version,
                     "model_date": model_date})
 
@@ -34,12 +63,3 @@ def hello():
         app.run(host=os.getenv('FLASK_RUN_HOST', '0.0.0.0'),
                 port=int(os.getenv('FLASK_RUN_PORT', 31331)),
                 debug=True)
-
-# @app.before_request
-# def handle_options_request():
-#     if request.method == "OPTIONS":
-#         response = make_response()
-#         response.headers["Access-Control-Allow-Origin"] = "*"
-#         response.headers["Access-Control-Allow-Methods"] = "POST, GET, OPTIONS, PUT, DELETE, PATCH"
-#         response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-#         return response
