@@ -3,8 +3,6 @@ import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   const [musicName, setMusicName] = useState<string>("");
   const [musicList, setMusicList] = useState<string[]>([]);
   const [showModal, setShowModal] = useState(false);
