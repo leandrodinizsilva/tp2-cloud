@@ -30,8 +30,6 @@ services:
       PORT: 31337
     ports:
       - "31337:31337"
-    volumes:
-      - ./react:/app
 
 volumes:
   shared-data:
