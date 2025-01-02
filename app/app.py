@@ -5,6 +5,9 @@ import pickle
 from flask import Flask,jsonify, request
 app = Flask(__name__)
 
+from flask_cors import CORS
+CORS(app)
+
 logging.basicConfig(level=logging.DEBUG)
 version = os.getenv('APP_VERSION', 0)
 model_date = os.getenv('MODEL_DATE', 0)
