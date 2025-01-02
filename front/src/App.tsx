@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 
+const API_URL = process.env.API_URL || "http://localhost:31331";
+
 function App() {
   const [musicName, setMusicName] = useState<string>("");
   const [musicList, setMusicList] = useState<string[]>([]);
@@ -37,7 +39,7 @@ function App() {
 
   const handleDiscoverRecommendations = async () => {
     try {
-      const response = await fetch("http://localhost:31331/api/recomend", {
+      const response = await fetch(`${API_URL}/api/recomend`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
