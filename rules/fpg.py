@@ -3,7 +3,7 @@ from mlxtend.frequent_patterns import apriori, fpgrowth, association_rules
 from mlxtend.preprocessing import TransactionEncoder
 import pickle
 
-data1 = pd.read_csv('/spotify/2023_spotify_ds1.csv')
+data1 = pd.read_csv('./spotify/2023_spotify_ds1.csv')
 # data2 = pd.read_csv('spotify/2023_spotify_ds2.csv')
 
 data = data1

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: leandrosilva-pvc
+  namespace: leandrosilva
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  selector:
+    matchLabels:
+       name: leandrosilva
+  storageClassName: default-storage-class-leandrosilva
+  volumeName: project2-pv2-leandrosilva
