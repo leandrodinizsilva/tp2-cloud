@@ -3,7 +3,7 @@ services:
     build:
       context: ./rules/
       dockerfile: Dockerfile
-    image: leandro867/playlist-model:0.1
+    image: leandro867/playlist-model:0.2
     environment:
       - PATH_DS=./spotify/2023_spotify_ds1.csv
     volumes:
@@ -15,7 +15,7 @@ services:
     build:
       context: ./app/
       dockerfile: Dockerfile
-    image: leandro867/playlist-api:0.1
+    image: leandro867/playlist-api:0.2
     networks:
       - app-network
     environment:
@@ -33,7 +33,7 @@ services:
     build:
       context: ./front/
       dockerfile: Dockerfile
-    image: leandro867/playlist-front:0.1
+    image: leandro867/playlist-front:0.2
     networks:
       - app-network
     environment:

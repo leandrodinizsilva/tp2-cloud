@@ -19,7 +19,7 @@ spec:
             claimName: leandrosilva-pvc
       containers:
         - name: ldsapp
-          image: leandro867/playlist-api:0.1
+          image: leandro867/playlist-api:0.2
           volumeMounts:
             - mountPath: /data
               name: data-volume
@@ -33,7 +33,7 @@ spec:
               memory: "512Mi"
               cpu: "500m"
         - name: ldsfront
-          image: leandro867/playlist-front:0.1
+          image: leandro867/playlist-front:0.2
           ports:
             - containerPort: 31337
           resources:
