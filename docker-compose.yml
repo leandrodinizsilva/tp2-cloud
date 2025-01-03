@@ -5,16 +5,12 @@ services:
       dockerfile: Dockerfile
     image: leandro867/playlist-model:0.1
     environment:
-      - FLASK_APP=app.py
-      - FLASK_RUN_HOST=0.0.0.0
-      - FLASK_RUN_PORT=31331
-      - MODEL_DATE=31/12/2024
-      - APP_VERSION=1.0.0
+      - PATH_DS=./spotify/2023_spotify_ds1.csv
     volumes:
       - shared-data:/data
       # - ./home/datasets/spotify:/spotify
     command: python /app/fpg.py
-  
+
   ldsapp:
     build:
       context: ./app/
@@ -22,11 +18,17 @@ services:
     image: leandro867/playlist-api:0.1
     networks:
       - app-network
+    environment:
+      - FLASK_APP=app.py
+      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_RUN_PORT=31331
+      - MODEL_DATE=31/12/2024
+      - APP_VERSION=1.0.0
     ports:
       - "31331:31331"
     volumes:
       - shared-data:/data
-  
+
   ldsfront:
     build:
       context: ./front/
