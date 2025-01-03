@@ -20,6 +20,17 @@ spec:
       containers:
         - name: ldsapp
           image: leandro867/playlist-api:0.2
+          env:
+            - name: FLASK_APP
+              value: "app.py"
+            - name: FLASK_RUN_HOST
+              value: "0.0.0.0"
+            - name: FLASK_RUN_PORT
+              value: "31331"
+            - name: MODEL_DATE
+              value: "31/12/2024"
+            - name: APP_VERSION
+              value: "1.0.0"
           volumeMounts:
             - mountPath: /data
               name: data-volume
@@ -34,6 +45,11 @@ spec:
               cpu: "500m"
         - name: ldsfront
           image: leandro867/playlist-front:0.2
+          env:
+            - name: HOST
+              value: "0.0.0.0"
+            - name: PORT
+              value: "31337"
           ports:
             - containerPort: 31337
           resources:
