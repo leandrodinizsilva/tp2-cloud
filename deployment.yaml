@@ -4,7 +4,7 @@ metadata:
   namespace: leandrosilva
   name: project-pv2-leandrosilva
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: leandrosilva-playlist-recommender
