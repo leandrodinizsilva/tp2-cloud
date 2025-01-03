@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: leandrosilva
+  name: project-pv2-leandrosilva
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: leandrosilva-playlist-recommender
+  template:
+    metadata:
+      labels:
+        app: leandrosilva-playlist-recommender
+    spec:
+      containers:
+        - name: rules
+          image: leandro867/playlist-model:0.1
+          ports:
+            - containerPort: 31339
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+        - name: ldsapp
+          image: leandro867/playlist-api:0.1
+          ports:
+            - containerPort: 31331
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+        - name: ldsfront
+          image: leandro867/playlist-front:0.1
+          ports:
+            - containerPort: 31337
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
