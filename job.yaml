@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rules-job
+  namespace: leandrosilva
+spec:
+  template:
+    metadata:
+      labels:
+        app: leandrosilva-playlist-recommender
+    spec:
+      containers:
+        - name: rules
+          image: leandro867/playlist-model:0.1
+          volumeMounts:
+            - mountPath: /data
+              name: data-volume
+          ports:
+            - containerPort: 31339
+      restartPolicy: Never
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: leandrosilva-pvc
