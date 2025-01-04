@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: rules-job-v02
+  name: rules-job-v03
   namespace: leandrosilva
 spec:
   template:
