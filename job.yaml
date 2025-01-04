@@ -10,7 +10,7 @@ spec:
         app: leandrosilva-playlist-recommender
     spec:
       containers:
-        - name: rules
+        - name: rules0.2
           image: leandro867/playlist-model:0.2
           env:
           - name: PATH_DS
