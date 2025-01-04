@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: rules-job
+  name: rules-job-v02
   namespace: leandrosilva
 spec:
   template:
@@ -10,7 +10,7 @@ spec:
         app: leandrosilva-playlist-recommender
     spec:
       containers:
-        - name: rulesv2
+        - name: rules
           image: leandro867/playlist-model:0.2
           env:
           - name: PATH_DS
