@@ -2,6 +2,7 @@ import os
 import logging
 import pandas as pd
 import pickle
+from datetime import datetime
 from flask import Flask,jsonify, request, make_response
 from flask_cors import CORS
 app = Flask(__name__)
@@ -11,6 +12,13 @@ CORS(app, resources={r"/api/*": {"origins": "*"}})
 logging.basicConfig(level=logging.DEBUG)
 version = os.getenv('APP_VERSION', 0)
 model_date = os.getenv('MODEL_DATE', 0)
+
+def getModelTmstp():
+	file = '/data/rule1.pkl'
+	last_date = os.path.getmtime(file)
+	last_date = datetime.fromtimestamp(last_date)
+	last_date = last_date.isoformat()
+	return last_date
 
 def readPickle():
     file = '/data/rule1.pkl'
@@ -52,12 +60,12 @@ def recommend(musicList):
 @app.route('/api/recommend', methods=['POST'])
 def hello():
     data = request.get_json()
-   
+    last_date = getModelTmstp()
     rec = recommend(data["musicList"])     
 
     return jsonify({"songs": rec,
                     "version": version,
-                    "model_date": model_date})
+                    "model_date": last_date})
 
     if __name__ == '__main__':
         app.run(host=os.getenv('FLASK_RUN_HOST', '0.0.0.0'),
