@@ -14,7 +14,7 @@ spec:
           image: leandro867/playlist-model:0.2
           env:
           - name: PATH_DS
-            value: "./spotify/2023_spotify_ds1.csv"
+            value: "./spotify/2023_spotify_ds2.csv"
           volumeMounts:
             - mountPath: /data
               name: data-volume
