@@ -26,6 +26,6 @@ frequent = fpgrowth(df, min_support=0.05, use_colnames=True)
 rules = association_rules(frequent, metric="lift", min_threshold=1.0, num_itemsets=2)
 
 with open('/data/rule1.pkl', 'wb') as file:
-            pickle.dump(rules, file)
-	    print("Nova Versão")
-            print("Rules saved successfully!")
+	pickle.dump(rules, file)
+	print("Nova Versão")
+	print("Rules saved successfully!")
