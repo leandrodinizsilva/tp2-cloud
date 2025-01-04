@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: rules
-          image: leandro867/playlist-model:0.3
+          image: leandro867/playlist-model:0.4
           env:
           - name: PATH_DS
             value: "./spotify/2023_spotify_ds2.csv"
